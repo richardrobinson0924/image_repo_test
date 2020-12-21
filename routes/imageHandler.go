@@ -8,6 +8,15 @@ import (
 	"strings"
 )
 
+// handlePostImage (POST /images) creates an `Image` from the provided id and data
+//
+// The request body should be a JSON object of the form
+// ```
+// {
+//     id: <string>
+//     data: <string>
+// }
+// ```
 func handlePostImage(w http.ResponseWriter, r *http.Request) {
 	var image models.Image
 
@@ -26,6 +35,12 @@ func handlePostImage(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 }
 
+// handleGetImage (GET /images/:id) returns an `Image` using the id provided in the path parameter
+//
+// Parameters:
+// - id: the id of the image
+//
+// Returns an `Image` object containing the image id and image data
 func handleGetImage(w http.ResponseWriter, r *http.Request) {
 	id := strings.TrimPrefix(r.URL.Path, "/image/")
 
